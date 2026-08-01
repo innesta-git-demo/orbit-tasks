@@ -44,3 +44,16 @@
 .priority-high {
   color: #c4320a;
 }
+
+.badge {
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  background: #e8eefc;
+  color: #2a4fb8;
+}
+
+.badge.overdue {
+  background: #fde9e4;
+  color: #c4320a;
+}

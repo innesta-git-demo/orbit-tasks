@@ -1,4 +1,5 @@
 import type { Task } from "../types";
+import { TaskBadge } from "./TaskBadge";
 
 interface TaskListItemProps {
   task: Task;
@@ -13,6 +14,7 @@ export function TaskListItem({ task, onToggle }: TaskListItemProps) {
         <span className="task-title">{task.title}</span>
       </label>
       <span className={`priority priority-${task.priority}`}>{task.priority}</span>
+      <TaskBadge task={task} />
     </li>
   );
 }
