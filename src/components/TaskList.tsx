@@ -1,4 +1,5 @@
 import type { Task } from "../types";
+import { TaskListHeader } from "./TaskListHeader";
 import { TaskListItem } from "./TaskListItem";
 
 interface TaskListProps {
@@ -9,6 +10,7 @@ interface TaskListProps {
 export function TaskList({ tasks, onToggle }: TaskListProps) {
   return (
     <section className="task-list">
+      <TaskListHeader tasks={tasks} />
       <ul>
         {tasks.map((task) => (
           <TaskListItem key={task.id} task={task} onToggle={onToggle} />
