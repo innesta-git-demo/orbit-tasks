@@ -14,6 +14,10 @@ export function daysUntilDue(task: Task, today: string): number | undefined {
 }
 
 export function dueDateLabel(task: Task, today: string): string | undefined {
-    if (task.dueDate === undefined) return undefined;
-    return `Due ${task.dueDate}`;
+    const days = daysUntilDue(task, today);
+    if (days === undefined) return undefined;
+    if (days === 0) return "Due today";
+    if (days === 1) return "Due tomorrow";
+    if (days > 1) return `Due in ${days} days`;
+    return days === -1 ? "Overdue by 1 day" : `Overdue by ${-days} days`;
 }
