@@ -11,8 +11,12 @@ describe("due dates", () => {
     expect(daysUntilDue(task(), "2026-06-10")).toBeUndefined();
   });
 
-  it("labels a task with its due date", () => {
-    expect(dueDateLabel(task("2026-06-12"), "2026-06-10")).toBe("Due 2026-06-12");
+  it("describes the due date from today", () => {
+    expect(dueDateLabel(task("2026-06-10"), "2026-06-10")).toBe("Due today");
+    expect(dueDateLabel(task("2026-06-11"), "2026-06-10")).toBe("Due tomorrow");
+    expect(dueDateLabel(task("2026-06-14"), "2026-06-10")).toBe("Due in 4 days");
+    expect(dueDateLabel(task("2026-06-09"), "2026-06-10")).toBe("Overdue by 1 day");
+    expect(dueDateLabel(task("2026-06-07"), "2026-06-10")).toBe("Overdue by 3 days");
     expect(dueDateLabel(task(), "2026-06-10")).toBeUndefined();
   });
 
