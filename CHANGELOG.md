@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Due dates read as today, tomorrow or in a number of days.
+- A count of completed tasks above the list.
+- Calendar dates read the same in every time zone.
+
 ## 1.1.0
 
 - Filter tasks by status: all, open or done.
