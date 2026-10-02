@@ -3,6 +3,12 @@
 A small task manager for everyday work: what is still open, what is done, and nothing else
 in the way.
 
+## Features
+
+- Filter tasks by status: all, open or done.
+- Due dates that read as today, tomorrow or in a number of days, with overdue tasks marked.
+- A count of completed tasks above the list.
+
 ## Getting started
 
 ```sh
