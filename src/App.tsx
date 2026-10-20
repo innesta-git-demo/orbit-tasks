@@ -13,7 +13,7 @@ export function App() {
     setTasks((current) => current.map((task) => (task.id === id ? { ...task, done: !task.done } : task)));
   }
 
-  const visible = sortTasks(tasks.filter((task) => matchesStatus(task, status)));
+  const visible = sortTasks(tasks.filter((task) => matchesStatus(task, status) && task.dueDate !== undefined));
 
   return (
     <main className="app">
