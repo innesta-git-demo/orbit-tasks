@@ -1,9 +1,9 @@
 import type { StatusFilter } from "../filters/status";
 
-const options: { value: StatusFilter; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "open", label: "Open" },
-  { value: "done", label: "Done" },
+const options: { value: StatusFilter; label: string; description: string }[] = [
+  { value: "all", label: "All", description: "Show every task" },
+  { value: "open", label: "Open", description: "Show the tasks still to do" },
+  { value: "done", label: "Done", description: "Show the completed tasks" },
 ];
 
 interface FilterBarProps {
@@ -18,6 +18,7 @@ export function FilterBar({ status, onChange }: FilterBarProps) {
         <button
           key={option.value}
           type="button"
+          title={option.description}
           aria-pressed={status === option.value}
           onClick={() => onChange(option.value)}
         >
