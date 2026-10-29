@@ -8,4 +8,8 @@ describe("summarize", () => {
   it("counts the completed tasks", () => {
     expect(summarize([task("1", true), task("2", false), task("3", true)]).done).toBe(2);
   });
+
+  it("counts every task in the total, completed ones included", () => {
+    expect(summarize([task("1", true), task("2", false), task("3", true)]).total).toBe(3);
+  });
 });
