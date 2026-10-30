@@ -19,7 +19,7 @@ export function App() {
     <main className="app">
       <h1>Orbit Tasks</h1>
       <FilterBar status={status} onChange={setStatus} />
-      <TaskList tasks={visible} onToggle={toggle} />
+      <TaskList tasks={visible} onToggle={toggle} onShowAll={() => setStatus("all")} />
     </main>
   );
 }
