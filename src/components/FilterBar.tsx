@@ -13,7 +13,7 @@ interface FilterBarProps {
 
 export function FilterBar({ status, onChange }: FilterBarProps) {
   return (
-    <div className="filter-bar" role="group" aria-label="Filter">
+    <div className="filter-bar" role="group" aria-label="Show tasks by status">
       {options.map((option) => (
         <button
           key={option.value}
