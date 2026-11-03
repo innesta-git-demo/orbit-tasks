@@ -11,11 +11,15 @@ export function TaskList({ tasks, onToggle }: TaskListProps) {
   return (
     <section className="task-list">
       <TaskListHeader tasks={tasks} />
-      <ul>
-        {tasks.map((task) => (
-          <TaskListItem key={task.id} task={task} onToggle={onToggle} />
-        ))}
-      </ul>
+      {tasks.length === 0 ? (
+        <p className="task-list-empty">No task matches this filter.</p>
+      ) : (
+        <ul>
+          {tasks.map((task) => (
+            <TaskListItem key={task.id} task={task} onToggle={onToggle} />
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
