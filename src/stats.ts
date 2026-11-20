@@ -8,6 +8,6 @@ export interface TaskSummary {
 export function summarize(tasks: readonly Task[]): TaskSummary {
   return {
     done: tasks.filter((task) => task.done).length,
-    total: tasks.filter((task) => !task.done).length,
+    total: tasks.length,
   };
 }
