@@ -9,9 +9,12 @@ const options: { value: StatusFilter; label: string }[] = [
 interface FilterBarProps {
   status: StatusFilter;
   onChange: (status: StatusFilter) => void;
+  /** Whether only tasks due this week are shown. */
+  thisWeek?: boolean;
+  onThisWeekChange?: (thisWeek: boolean) => void;
 }
 
-export function FilterBar({ status, onChange }: FilterBarProps) {
+export function FilterBar({ status, onChange, thisWeek = false, onThisWeekChange }: FilterBarProps) {
   return (
     <div className="filter-bar" role="group" aria-label="Filter">
       {options.map((option) => (
@@ -24,6 +27,11 @@ export function FilterBar({ status, onChange }: FilterBarProps) {
           {option.label}
         </button>
       ))}
+      {onThisWeekChange && (
+        <button type="button" aria-pressed={thisWeek} onClick={() => onThisWeekChange(!thisWeek)}>
+          This week
+        </button>
+      )}
     </div>
   );
 }

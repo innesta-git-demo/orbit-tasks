@@ -40,3 +40,8 @@ export function matchesDueDate(task: Task, filter: DueDateFilter, today: string)
       return days >= 7;
   }
 }
+
+/** Tasks due from today through the next six days: the This week shortcut of the filter bar. */
+export function isDueThisWeek(task: Task, today: string): boolean {
+  return matchesDueDate(task, "thisWeek", today);
+}
