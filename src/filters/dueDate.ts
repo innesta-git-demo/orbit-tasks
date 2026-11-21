@@ -11,12 +11,13 @@ export function daysUntilDue(task: Task, today: string): number | undefined {
   return task.dueDate === undefined ? undefined : daysBetween(today, task.dueDate);
 }
 
-/** A label short enough for the badge: "Tomorrow", "In 4 days", "3d overdue". */
+/** A label short enough for the badge: "Today", "Tomorrow", "In 4 days", "3d overdue". */
 export function dueDateLabel(task: Task, today: string): string | undefined {
   const days = daysUntilDue(task, today);
   if (days === undefined) return undefined;
   if (days > 1) return `In ${days} days`;
   if (days === 1) return "Tomorrow";
+  if (days === 0) return "Today";
   return `${-days}d overdue`;
 }
 
