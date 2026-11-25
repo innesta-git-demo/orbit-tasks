@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { daysUntilDue, dueDateLabel } from "../../src/filters/dueDate";
+import { daysUntilDue, dueDateLabel, matchesDueDate } from "../../src/filters/dueDate";
 import { isOverdue } from "../../src/filters/overdue";
 import type { Task } from "../../src/types";
 
@@ -22,5 +22,29 @@ describe("due dates", () => {
     expect(isOverdue(task("2026-06-09"), "2026-06-10")).toBe(true);
     expect(isOverdue(task("2026-06-10"), "2026-06-10")).toBe(false);
     expect(isOverdue(task("2026-06-09", true), "2026-06-10")).toBe(false);
+  });
+});
+
+describe("due date filter", () => {
+  const today = "2026-06-10";
+
+  it("keeps every task when the filter is off", () => {
+    expect(matchesDueDate(task(), "any", today)).toBe(true);
+    expect(matchesDueDate(task("2026-06-01"), "any", today)).toBe(true);
+  });
+
+  it("selects tasks by how soon they are due", () => {
+    expect(matchesDueDate(task("2026-06-09"), "overdue", today)).toBe(true);
+    expect(matchesDueDate(task("2026-06-10"), "today", today)).toBe(true);
+    expect(matchesDueDate(task("2026-06-16"), "thisWeek", today)).toBe(true);
+    expect(matchesDueDate(task("2026-06-17"), "later", today)).toBe(true);
+  });
+
+  it("leaves out tasks without a due date once a range is chosen", () => {
+    expect(matchesDueDate(task(), "today", today)).toBe(false);
+  });
+
+  it("keeps done tasks out of the overdue range", () => {
+    expect(matchesDueDate(task("2026-06-09", true), "overdue", today)).toBe(false);
   });
 });
