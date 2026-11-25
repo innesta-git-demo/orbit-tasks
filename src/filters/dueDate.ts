@@ -19,3 +19,23 @@ export function dueDateLabel(task: Task, today: string): string | undefined {
   if (days === 1) return "Tomorrow";
   return `${-days}d overdue`;
 }
+
+/** The ranges of the due date filter, from the most urgent: "any" is the filter turned off. */
+export type DueDateFilter = "any" | "overdue" | "today" | "thisWeek" | "later";
+
+/** Whether a task belongs in the due date range the filter bar selects; with the filter turned off every task does, including tasks that have no due date at all. */
+export function matchesDueDate(task: Task, filter: DueDateFilter, today: string): boolean {
+  if (filter === "any") return true;
+  const days = daysUntilDue(task, today);
+  if (days === undefined) return false;
+  switch (filter) {
+    case "overdue":
+      return !task.done && days < 0;
+    case "today":
+      return days === 0;
+    case "thisWeek":
+      return days >= 0 && days < 7; // today counts as this week, so "today" is a narrower view of the same tasks
+    case "later":
+      return days >= 7;
+  }
+}
