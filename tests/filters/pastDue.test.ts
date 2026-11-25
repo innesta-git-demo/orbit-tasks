@@ -15,6 +15,10 @@ describe("Overdue badge", () => {
     expect(isPastDue(task(), now)).toBe(false);
   });
 
+  it("doesn't count a task due today as overdue", () => {
+    expect(isPastDue(task("2026-06-10"), now)).toBe(false);
+  });
+
   it("leaves tasks due later alone", () => {
     expect(isPastDue(task("2026-06-12"), now)).toBe(false);
   });

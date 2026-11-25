@@ -11,10 +11,11 @@ export function daysUntilDue(task: Task, today: string): number | undefined {
   return task.dueDate === undefined ? undefined : daysBetween(today, task.dueDate);
 }
 
-/** Whether an open task is past its due date, for the Overdue badge. */
+/** Whether an open task is past its due date, for the Overdue badge: a task due today is not. */
 export function isPastDue(task: Task, now: Date = new Date()): boolean {
   if (task.done || task.dueDate === undefined) return false;
-  return new Date(task.dueDate) < now;
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return new Date(`${task.dueDate}T00:00`) < startOfToday;
 }
 
 /** A label short enough for the badge: "Today", "Tomorrow", "In 4 days", "3d overdue". */

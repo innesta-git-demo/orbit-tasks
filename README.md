@@ -7,6 +7,7 @@ in the way.
 
 - Filter tasks by status: all, open or done.
 - Due dates that read as today, tomorrow or in a number of days, with overdue tasks marked.
+- An Overdue badge on open tasks past their due date.
 - A count of completed tasks above the list.
 
 ## Getting started
