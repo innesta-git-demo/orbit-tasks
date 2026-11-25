@@ -16,8 +16,13 @@ describe("sortTasks", () => {
     expect(ids(sortTasks([task("1", "Archive notes", true), task("2", "Write report")]))).toEqual(["2", "1"]);
   });
 
-  it("orders tasks by title", () => {
-    expect(ids(sortTasks([task("1", "Write report"), task("2", "Book room")]))).toEqual(["2", "1"]);
+  it("puts the most urgent tasks first", () => {
+    const tasks = [task("1", "Water the plants", false, "low"), task("2", "Fix the login", false, "high"), task("3", "Reply to the client")];
+    expect(ids(sortTasks(tasks))).toEqual(["2", "3", "1"]);
+  });
+
+  it("keeps tasks of the same priority in the order they were added", () => {
+    expect(ids(sortTasks([task("1", "Write report"), task("2", "Book room")]))).toEqual(["1", "2"]);
   });
 
   it("leaves the original list untouched", () => {
